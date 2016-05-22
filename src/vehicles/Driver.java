@@ -5,6 +5,8 @@
  */
 package vehicles;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ucint
@@ -23,6 +25,21 @@ public class Driver {
     
     public static void promptUser() {
         System.out.println("In prompt user");
+        
+        // create an object of type Vehicle, and store it in the variable myVehicle
+        Vehicle myVehicle = new Vehicle();
+        
+        // set the attributes in myVehicle object.
+        myVehicle.setGallonsOfGas(12.0);
+        myVehicle.setMilesPerGallon(20);
+        myVehicle.setOdometer(10000);
+        
+        // move the vehicle
+        myVehicle.go(40);
+        
+        // print the current state of the vehicle.
+        System.out.println(myVehicle.toString());
+        
     }
     
 }
