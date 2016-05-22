@@ -12,8 +12,17 @@ package vehicles;
 public class Vehicle {
     
     private double gallonsOfGas;
-    private int mpg;
+    private int milesPerGallon;
+    private int odometer;
 
+    /**
+     * Move this car the specified distance.
+     * @param distance 
+     */
+    public void go(int distance) {
+        
+    }
+    
     /**
      * @return the gallonsOfGas
      */
@@ -29,17 +38,31 @@ public class Vehicle {
     }
 
     /**
-     * @return the mpg
+     * @return the milesPerGallon
      */
-    public int getMpg() {
-        return mpg;
+    public int getMilesPerGallon() {
+        return milesPerGallon;
     }
 
     /**
-     * @param mpg the mpg to set
+     * @param milesPerGallon the milesPerGallon to set
      */
-    public void setMpg(int mpg) {
-        this.mpg = mpg;
+    public void setMilesPerGallon(int milesPerGallon) {
+        this.milesPerGallon = milesPerGallon;
+    }
+
+    /**
+     * @return the odometer
+     */
+    public int getOdometer() {
+        return odometer;
+    }
+
+    /**
+     * @param odometer the odometer to set
+     */
+    public void setOdometer(int odometer) {
+        this.odometer = odometer;
     }
     
 }

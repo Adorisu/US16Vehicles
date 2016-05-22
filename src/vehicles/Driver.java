@@ -15,11 +15,14 @@ public class Driver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        System.out.println("In driver main");
+        
+        // call the prompt user method
+        promptUser();
     }
     
-    public void promptUser() {
-        
+    public static void promptUser() {
+        System.out.println("In prompt user");
     }
     
 }
