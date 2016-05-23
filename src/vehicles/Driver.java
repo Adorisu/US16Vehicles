@@ -28,14 +28,38 @@ public class Driver {
         
         // create an object of type Vehicle, and store it in the variable myVehicle
         Vehicle myVehicle = new Vehicle();
+
+        // print the current state of the vehicle.
+        System.out.println(myVehicle.toString());
+        
+        // prompt user
+        String strGallonsOfGas = JOptionPane.showInputDialog("Enter gallons of gas");
+        
+        // convert the string return to a double
+        double dblGallonsOfGas = Double.parseDouble(strGallonsOfGas);
         
         // set the attributes in myVehicle object.
-        myVehicle.setGallonsOfGas(12.0);
-        myVehicle.setMilesPerGallon(20);
-        myVehicle.setOdometer(10000);
+        myVehicle.setGallonsOfGas(dblGallonsOfGas);
+        
+        final String strMilesPerGallon = JOptionPane.showInputDialog("Enter miles per gallon");
+        
+        final int intMilesPerGallon = Integer.parseInt(strMilesPerGallon);
+        
+        myVehicle.setMilesPerGallon(intMilesPerGallon);
+        
+        final String strOdometer = JOptionPane.showInputDialog("Enter odometer");
+        final int intOdometer = Integer.parseInt(strOdometer);
+        
+        myVehicle.setOdometer(intOdometer);
+        
+        final String strDistanceTravelled = JOptionPane.showInputDialog("Enter distance to travel");
+        final int intDistance = Integer.parseInt(strDistanceTravelled);
+        
+        // print the current state of the vehicle.
+        System.out.println(myVehicle.toString());
         
         // move the vehicle
-        myVehicle.go(40);
+        myVehicle.go(intDistance);
         
         // print the current state of the vehicle.
         System.out.println(myVehicle.toString());
