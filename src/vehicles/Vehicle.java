@@ -20,6 +20,13 @@ public class Vehicle {
      * @param distance 
      */
     public void go(int distance) {
+        // compute gallons consumed
+        double gallonsConsumed = distance/milesPerGallon;
+        // subtract gallons consumed from gallons of gas.
+        gallonsOfGas = gallonsOfGas - gallonsConsumed;
+        
+        // increase odometer, using shortcut.
+        odometer += distance;
         
     }
     
@@ -64,5 +71,12 @@ public class Vehicle {
     public void setOdometer(int odometer) {
         this.odometer = odometer;
     }
+
+    @Override
+    public String toString() {
+        return "Gallons of Gas: " + gallonsOfGas + " Odometer: " + odometer;
+    }
+    
+    
     
 }
