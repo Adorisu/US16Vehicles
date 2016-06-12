@@ -32,26 +32,14 @@ public class CreateATruck {
 
         final Object selectedBedLength = JOptionPane.showInputDialog(null, "Choose a Bed Length", "Bed Selection", JOptionPane.QUESTION_MESSAGE, null, bedLength, MEDIUM__BED);
 
-        if (selectedCab.equals(DOUBLE_CAB)) {
-            if (selectedBedLength.equals(LONG__BED)) {
-                JOptionPane.showMessageDialog(null, "Sorry, but you cannot choose both Double Cab and Long Bed.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Your selections are valid.  Cab: " + selectedCab + " Bed: " + selectedBedLength);
-            }
-        } else if (selectedCab.equals(REGULAR)) {
-            if (selectedBedLength.equals(SHORT__BED)) {
-                JOptionPane.showMessageDialog(null, "Sorry, but you cannot choose both Regular Cab and Short Bed.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Your selections are valid.  Cab: " + selectedCab + " Bed: " + selectedBedLength);
-            }
-        }  else if (selectedCab.equals(SUPERCAB)) {
-            if (selectedBedLength.equals(SHORT__BED)) {
-                JOptionPane.showMessageDialog(null, "Sorry, but you cannot choose both Super Cab and Short Bed.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Your selections are valid.  Cab: " + selectedCab + " Bed: " + selectedBedLength);
-            }
+        if (selectedCab.equals(DOUBLE_CAB) && selectedBedLength.equals(LONG__BED)) {
+            JOptionPane.showMessageDialog(null, "Sorry, but you cannot choose both Double Cab and Long Bed.");
+        } else if (selectedCab.equals(REGULAR) && selectedBedLength.equals(SHORT__BED)) {
+            JOptionPane.showMessageDialog(null, "Sorry, but you cannot choose both Regular Cab and Short Bed.");
+        } else if (selectedCab.equals(SUPERCAB) && selectedBedLength.equals(SHORT__BED)) {
+            JOptionPane.showMessageDialog(null, "Sorry, but you cannot choose both Super Cab and Short Bed.");
         } else {
-            JOptionPane.showMessageDialog(null, "You chose a super cab");
+            JOptionPane.showMessageDialog(null, "Your selections are valid.  Cab: " + selectedCab + " Bed: " + selectedBedLength);
         }
 
     }
