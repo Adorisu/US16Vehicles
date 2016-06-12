@@ -43,7 +43,30 @@ public class CreateATruck {
             JOptionPane.showMessageDialog(null, "Your selections are valid.  Cab: " + selectedCab + " Bed: " + selectedBedLength);
         }
 
+        String[] engine = new String[3];
+        engine[0] = LITER_50;
+        engine[1] = LITER_35;
+        engine[2] = LITER_27;
+        
+        // prompt for engine size
+        Object selectedEngine = JOptionPane.showInputDialog(null, "Choose a Engine Type", "Engine Selection", JOptionPane.QUESTION_MESSAGE, null, engine, LITER_50);
+        
+        // prompt for towing capacity
+        final String strTowingCapacity = JOptionPane.showInputDialog("What towing capacity do you want?");
+        int intTowingCapacity = Integer.parseInt(strTowingCapacity);
+        
+        if (intTowingCapacity >= 10000  && (selectedEngine.equals(LITER_50) || selectedEngine.equals(LITER_35))) {
+            JOptionPane.showMessageDialog(null, "You have chosen a valid combination of towing capacity and engine size");
+        } else if (intTowingCapacity >= 10000 && selectedEngine.equals(LITER_27)) {
+            JOptionPane.showMessageDialog(null, "You will need a larger engine to tow that much weight.");
+        }
+         
+        
+        
     }
+    private static final String LITER_27 = "2.7 L";
+    private static final String LITER_35 = "3.5 L";
+    private static final String LITER_50 = "5.0 L";
 
     private static void bedAndCabError(Object selectedCab, final Object selectedBedLength) throws HeadlessException {
         JOptionPane.showMessageDialog(null, "Sorry, but you cannot choose both " + selectedCab + " and " + selectedBedLength, "Invalid Combination", JOptionPane.WARNING_MESSAGE);
