@@ -6,6 +6,7 @@
 package vehicles;
 
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,9 +30,12 @@ public class Driver {
         // create an object of type Vehicle, and store it in the variable myVehicle
         Vehicle myVehicle;
         int createAnother;
-            
+
+        // this array list will contain all of the vehicles that we create.
+        ArrayList<Vehicle> allVehicles = new ArrayList<>();
+
         do {
-            myVehicle  = new Vehicle();
+            myVehicle = new Vehicle();
             // prompt user
             String strGallonsOfGas = JOptionPane.showInputDialog("Enter gallons of gas");
 
@@ -49,26 +53,34 @@ public class Driver {
 
             myVehicle.setOdometer(intOdometer);
 
+            // once I have created a vehicle, store it in our collection.
+            allVehicles.add(myVehicle);
+
             // prompt the user to create another vehicle.
             createAnother = JOptionPane.showConfirmDialog(null, "Do you want to create another vehicle?", "Create another vehicle?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
-        // if the user chooses yes, prompt for another vehicle.  Otherwise, do not loop again.    
+
+            // if the user chooses yes, prompt for another vehicle.  Otherwise, do not loop again.    
         } while (createAnother == JOptionPane.YES_OPTION);
 
-        
-        
         final String strDistanceTravelled = JOptionPane.showInputDialog("Enter distance to travel");
         final int intDistance = Integer.parseInt(strDistanceTravelled);
 
-        // print the current state of the vehicle.
-        System.out.println(myVehicle.toString());
+        // iterate over all of the vehicles in our collection, and run them the given distance.
+//        for (int i = 0; i < allVehicles.size(); i++) {
+//            final Vehicle thisVehicle = allVehicles.get(i);
+//        }
 
-        // move the vehicle
-        myVehicle.go(intDistance);
+        for (Vehicle thisVehicle : allVehicles) {
+            // print the current state of the vehicle.
+            System.out.println("Before: " + thisVehicle.toString());
 
-        // print the current state of the vehicle.
-        System.out.println("My Vehicle");
-        System.out.println(myVehicle.toString());
+            // move the vehicle
+            thisVehicle.go(intDistance);
+
+            // print the current state of the vehicle.
+            System.out.println("After: ");
+            System.out.println(thisVehicle.toString());
+        }
 
     }
 
