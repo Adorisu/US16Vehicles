@@ -15,11 +15,20 @@ public class Vehicle {
     private int milesPerGallon;
     private int odometer;
 
+
     /**
      * Move this car the specified distance.
      * @param distance 
      */
     public void go(int distance) {
+        // compute the gallons of gas consumed during this trip.
+        double gallonsConsumed = distance / milesPerGallon;
+        
+        // subtract the gallons consumed from the gallons available.
+        gallonsOfGas = gallonsOfGas - gallonsConsumed;
+               
+        // increase odometer by distance travelled.
+        odometer += distance;
         
     }
     
@@ -64,5 +73,11 @@ public class Vehicle {
     public void setOdometer(int odometer) {
         this.odometer = odometer;
     }
+
+    @Override
+    public String toString() {
+        return "Gallons of Gas: " + gallonsOfGas + " odometer: " + odometer;
+    }
+    
     
 }
