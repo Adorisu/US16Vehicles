@@ -71,9 +71,47 @@ public class CreateATruck {
             JOptionPane.showMessageDialog(null, "You will need a larger engine to tow that much weight.");
         }
          
+        // set possible trim levels.
+        String[] possibleTrimLevels = {LIMITED, PLATINUM, KING__RANCH, LARIAT, XLT, XL};
         
+        
+        // prompt the user for trim level.
+        Object selectedTrim = JOptionPane.showInputDialog(null, "Choose a Trim Type", "Trim Selection", JOptionPane.QUESTION_MESSAGE, null, possibleTrimLevels, XL);
+        // convert user's choice to a String.
+        String trimLevel = selectedTrim.toString();
+        
+        StringBuilder selectedOptions = new StringBuilder();
+        
+        // build option packages based on trim selection.
+        switch(trimLevel) {
+            case LIMITED :
+                selectedOptions.append("| Twin Moonroof |");
+            case PLATINUM :
+                selectedOptions.append("| Voice Activated Navigation |");
+            case KING__RANCH :
+                selectedOptions.append("| 5.0 V8 |");
+            case LARIAT :
+                selectedOptions.append("| Rear View Camera |");
+            case XLT :
+                selectedOptions.append("| Power Equipment |");
+            case XL : 
+                selectedOptions.append("| Automatic Transmission |");
+            break;
+            default :
+                selectedOptions.append("I do not recognize this trim level.");
+            break;
+            
+            
+        }
+        JOptionPane.showMessageDialog(null, "Selected Options: " + selectedOptions.toString());
         
     }
+    public static final String XL = "XL";
+    public static final String XLT = "XLT";
+    public static final String LARIAT = "Lariat";
+    public static final String KING__RANCH = "King Ranch";
+    public static final String PLATINUM = "Platinum";
+    public static final String LIMITED = "Limited";
     private static final String LITER_27 = "2.7 L";
     private static final String LITER_35 = "3.5 L";
     private static final String LITER_50 = "5.0 L";
