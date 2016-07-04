@@ -49,12 +49,34 @@ public class Driver {
             String[] availableCars = {NEON, CAVALIER, PRIUS};
 
             final Object selectedCar = JOptionPane.showInputDialog(null, "Choose a Car to Create", "Choose a Car", JOptionPane.QUESTION_MESSAGE, null, availableCars, NEON);
-            
+
             myVehicle = createVehicle(selectedCar);
-            
-            // set it to a convertible.
-            // myVehicle.setConvertible(true);
-            
+
+            // ask Cavalier-specific questions
+            if (myVehicle instanceof Cavalier) {
+                // set it to a convertible.
+                final int convertible = JOptionPane.showConfirmDialog(null, "Is this a convertible?", "Convertible?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (convertible == JOptionPane.YES_OPTION) {
+                    ((Cavalier) myVehicle).setConvertible(true);
+                } else {
+                    ((Cavalier) myVehicle).setConvertible(false);
+                }
+            }
+                     
+            // ask Prius-specific questions
+            if (myVehicle instanceof Prius) {
+                Prius prius = (Prius) myVehicle;
+                final String strMAH = JOptionPane.showInputDialog("Enter Milliamp Hours");
+                int intMAH = Integer.parseInt(strMAH);
+                prius.setMilliampHours(intMAH);
+                
+                final String strMPMAH = JOptionPane.showInputDialog("Enter Miles per MAH");
+                int intMPMAH = Integer.parseInt(strMPMAH);
+                prius.setMilesPerMah(intMPMAH);
+                
+                
+            }
+
             // prompt user
             String strGallonsOfGas = JOptionPane.showInputDialog("Enter gallons of gas");
 
@@ -96,15 +118,15 @@ public class Driver {
                     System.out.println("Out of gas!");
                     break;
                 }
-                
+
                 // move the vehicle
                 thisVehicle.go(trips[i][0]);
 
                 // print the current state of the vehicle.
                 System.out.println("After: ");
                 System.out.println(thisVehicle.toString());
-                
-                double reimbursementTotal = (trips[i][1] * trips[i][0])/100.0;
+
+                double reimbursementTotal = (trips[i][1] * trips[i][0]) / 100.0;
                 System.out.println("Reimbursement Total: " + reimbursementTotal + " At " + trips[i][1] + " cents per mile.");
             }
         }
@@ -113,24 +135,25 @@ public class Driver {
 
     /**
      * Simple factory method to create and return a subclass of type Vehicle.
+     *
      * @param selectedCar A string representing the vehicle we want to create.
      * @return the created vehicle.
-     * @throws Exception 
+     * @throws Exception
      */
     public static Vehicle createVehicle(final Object selectedCar) throws Exception {
         String fullyQualifiedClassName = "vehicles." + selectedCar.toString();
-        Vehicle myVehicle =  (Vehicle) Class.forName(fullyQualifiedClassName).newInstance();
+        Vehicle myVehicle = (Vehicle) Class.forName(fullyQualifiedClassName).newInstance();
         return myVehicle;
     }
-    
+
     public static final String PRIUS = "Prius";
     public static final String CAVALIER = "Cavalier";
     public static final String NEON = "Neon";
 
     /**
-     * 
+     *
      * @throws NumberFormatException
-     * @throws HeadlessException 
+     * @throws HeadlessException
      */
     private static void promptForTrips() throws NumberFormatException, HeadlessException {
 
@@ -146,7 +169,7 @@ public class Driver {
 
             String strReimbursementRate = JOptionPane.showInputDialog("Enter reimbursement rate, per mile.");
             trips[tripCounter][1] = Integer.parseInt(strReimbursementRate);
-            
+
             // add one to the trip counter to increase our total number of trips entered.
             tripCounter++;
 
