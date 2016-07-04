@@ -38,7 +38,17 @@ public class Driver {
         ArrayList<Vehicle> allVehicles = new ArrayList<>();
 
         do {
-            myVehicle = new Vehicle();
+            String[] availableCars = {NEON, CAVALIER, PRIUS};
+
+            JOptionPane.showInputDialog(null, "Choose a Car to Create", "Choose a Car", JOptionPane.QUESTION_MESSAGE, null, availableCars, NEON);
+            
+            myVehicle = new Prius();
+            
+            
+            
+            // set it to a convertible.
+            // myVehicle.setConvertible(true);
+            
             // prompt user
             String strGallonsOfGas = JOptionPane.showInputDialog("Enter gallons of gas");
 
@@ -94,6 +104,9 @@ public class Driver {
         }
 
     }
+    public static final String PRIUS = "Prius";
+    public static final String CAVALIER = "Cavalier";
+    public static final String NEON = "Neon";
 
     /**
      * 
