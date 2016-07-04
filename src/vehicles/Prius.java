@@ -48,6 +48,13 @@ public class Prius extends Vehicle {
     public void setMilesPerMah(int milesPerMah) {
         this.milesPerMah = milesPerMah;
     }
+
+    @Override
+    public String toString() {
+        String state = super.toString(); //To change body of generated methods, choose Tools | Templates.
+            String priusState = "Prius milliamp hours: " +  milliampHours + " miles per MAH : " + milesPerMah + " ";
+        return priusState + state; 
+    }
     
     
 }
