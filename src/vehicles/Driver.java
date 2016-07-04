@@ -7,6 +7,8 @@ package vehicles;
 
 import java.awt.HeadlessException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,11 +26,16 @@ public class Driver {
     public static void main(String[] args) {
         System.out.println("In driver main");
 
-        // call the prompt user method
-        promptUser();
+        try {
+            // call the prompt user method
+            promptUser();
+        } catch (Exception ex) {
+            Logger.getLogger(Driver.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Unknown car selected.  Program terminating.");
+        }
     }
 
-    public static void promptUser() {
+    public static void promptUser() throws Exception {
 
         // create an object of type Vehicle, and store it in the variable myVehicle
         Vehicle myVehicle;
@@ -40,11 +47,9 @@ public class Driver {
         do {
             String[] availableCars = {NEON, CAVALIER, PRIUS};
 
-            JOptionPane.showInputDialog(null, "Choose a Car to Create", "Choose a Car", JOptionPane.QUESTION_MESSAGE, null, availableCars, NEON);
+            final Object selectedCar = JOptionPane.showInputDialog(null, "Choose a Car to Create", "Choose a Car", JOptionPane.QUESTION_MESSAGE, null, availableCars, NEON);
             
-            myVehicle = new Prius();
-            
-            
+            myVehicle = createVehicle(selectedCar);
             
             // set it to a convertible.
             // myVehicle.setConvertible(true);
@@ -104,6 +109,28 @@ public class Driver {
         }
 
     }
+
+    /**
+     * Simple factory method to create and return a subclass of type Vehicle.
+     * @param selectedCar A string representing the vehicle we want to create.
+     * @return the created vehicle.
+     * @throws Exception 
+     */
+    public static Vehicle createVehicle(final Object selectedCar) throws Exception {
+        
+        if (selectedCar.toString().equalsIgnoreCase(NEON)) {
+            return new Neon();
+        } else if (selectedCar.toString().equalsIgnoreCase(CAVALIER)) {
+            return new Cavalier();
+        } else if (selectedCar.toString().equalsIgnoreCase(PRIUS)) {
+            return new Prius();
+        } else {
+            // record that this case should not happen.
+            throw new Exception ("Unrecognized Car");
+        }
+        // return myVehicle;
+    }
+    
     public static final String PRIUS = "Prius";
     public static final String CAVALIER = "Cavalier";
     public static final String NEON = "Neon";
