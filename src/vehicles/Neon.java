@@ -10,5 +10,13 @@ package vehicles;
  * @author ucint
  */
 public class Neon extends Vehicle {
+
+    @Override
+    public String toString() {
+        String state = super.toString(); 
+        
+        return "Neon " + state; 
+                
+    }
     
 }
