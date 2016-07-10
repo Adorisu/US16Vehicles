@@ -5,7 +5,6 @@
  */
 package vehicles;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -30,6 +29,7 @@ public class Driver {
         try {
             // call the prompt user method
             promptUser();
+
         } catch (Exception ex) {
             Logger.getLogger(Driver.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Unknown car selected.  Program terminating.");
@@ -62,19 +62,18 @@ public class Driver {
                     ((Cavalier) myVehicle).setConvertible(false);
                 }
             }
-                     
+
             // ask Prius-specific questions
             if (myVehicle instanceof Prius) {
                 Prius prius = (Prius) myVehicle;
                 final String strMAH = JOptionPane.showInputDialog("Enter Milliamp Hours");
                 int intMAH = Integer.parseInt(strMAH);
                 prius.setMilliampHours(intMAH);
-                
+
                 final String strMPMAH = JOptionPane.showInputDialog("Enter Miles per MAH");
                 int intMPMAH = Integer.parseInt(strMPMAH);
                 prius.setMilesPerMah(intMPMAH);
-                
-                
+
             }
 
             // prompt user
@@ -111,6 +110,7 @@ public class Driver {
 //        }
         for (Vehicle thisVehicle : allVehicles) {
             for (int i = 0; i < tripCounter; i++) {
+                printTripNumber(i);
                 // print the current state of the vehicle.
                 System.out.println("Before: " + thisVehicle);
 
@@ -204,6 +204,10 @@ public class Driver {
 
         // return the validated number.
         return intInput;
+    }
+
+    private static void printTripNumber(int i) {
+        System.out.println("Trip Number: " + i);
     }
 
 }
