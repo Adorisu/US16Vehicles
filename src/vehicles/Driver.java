@@ -56,10 +56,12 @@ public class Driver {
             if (myVehicle instanceof Cavalier) {
                 // set it to a convertible.
                 final int convertible = JOptionPane.showConfirmDialog(null, "Is this a convertible?", "Convertible?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+               
+                Cavalier cavalier = (Cavalier) myVehicle;
                 if (convertible == JOptionPane.YES_OPTION) {
-                    ((Cavalier) myVehicle).setConvertible(true);
+                    cavalier.setConvertible(true);
                 } else {
-                    ((Cavalier) myVehicle).setConvertible(false);
+                    cavalier.setConvertible(false);
                 }
             }
 
